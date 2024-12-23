@@ -183,11 +183,11 @@ function map_dolphin_joystick() {
     done
 
     if [[ "$is_guide" == "true" ]]; then
-        _extension_string="${_extension_string/GUIDE/$value}"
+        _extension_string="${_extension_string//GUIDE/$value}"
     elif [[ "$is_a" == "true" ]]; then
-        _extension_string="${_extension_string/A_BUTTON/$value}"
+        _extension_string="${_extension_string//A_BUTTON/$value}"
     elif [[ "$is_b" == "true" ]]; then
-        _extension_string="${_extension_string/B_BUTTON/$value}"
+        _extension_string="${_extension_string//B_BUTTON/$value}"
     fi
 }
 
