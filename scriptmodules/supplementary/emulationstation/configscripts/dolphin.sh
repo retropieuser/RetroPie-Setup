@@ -284,7 +284,7 @@ function onend_dolphin_joystick() {
             fi
         done
     fi
-    
+
     # Map generic Stick cali
     cat <<EOF >> ${_tmp_config_files[gc]}
 Main Stick/Calibration = 100.00 141.42 100.00 141.42 100.00 141.42 100.00 141.42
