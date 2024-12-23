@@ -60,22 +60,22 @@ function map_dolphin_joystick() {
         up)
             gc_keys=("D-Pad/Up")
             wii_keys=("D-Pad/Up" "Classic/D-Pad/Up")
-            dir=("Up")
+            dir=("N")
             ;;
         down)
             gc_keys=("D-Pad/Down")
             wii_keys=("D-Pad/Down" "Classic/D-Pad/Down")
-            dir=("Down")
+            dir=("S")
             ;;
         left)
             gc_keys=("D-Pad/Left")
             wii_keys=("D-Pad/Left" "Classic/D-Pad/Left")
-            dir=("Left")
+            dir=("W")
             ;;
         right)
             gc_keys=("D-Pad/Right")
             wii_keys=("D-Pad/Right" "Classic/D-Pad/Right")
-            dir=("Right")
+            dir=("E")
             ;;
         b)
             gc_keys=("Buttons/B")
@@ -120,42 +120,42 @@ function map_dolphin_joystick() {
         leftanalogleft)
             gc_keys=("Main Stick/Left")
             wii_keys=("Nunchuk/Left" "Classic/Left Stick/Left")
-            dir=("Left")
+            dir=("W")
             ;;
         leftanalogright)
             gc_keys=("Main Stick/Right")
             wii_keys=("Nunchuk/Right" "Classic/Left Stick/Right")
-            dir=("Right")
+            dir=("E")
             ;;
         leftanalogup)
             gc_keys=("Main Stick/Up")
             wii_keys=("Nunchuk/Up" "Classic/Left Stick/Up")
-            dir=("Up")
+            dir=("N")
             ;;
         leftanalogdown)
             gc_keys=("Main Stick/Down")
             wii_keys=("Nunchuk/Down" "Classic/Left Stick/Down")
-            dir=("Down")
+            dir=("S")
             ;;
         rightanalogleft)
             gc_keys=("C-Stick/Left")
             wii_keys=("IR/Left" "Classic/Right Stick/Left")
-            dir=("Left")
+            dir=("W")
             ;;
         rightanalogright)
             gc_keys=("C-Stick/Right")
             wii_keys=("IR/Right" "Classic/Right Stick/Right")
-            dir=("Right")
+            dir=("E")
             ;;
         rightanalogup)
             gc_keys=("C-Stick/Up")
             wii_keys=("IR/Up" "Classic/Right Stick/Up")
-            dir=("Up")
+            dir=("N")
             ;;
         rightanalogdown)
             gc_keys=("C-Stick/Down")
             wii_keys=("IR/Down" "Classic/Right Stick/Down")
-            dir=("Down")
+            dir=("S")
             ;;
         hotkeyenable)
             gc_keys=("Hotkey")
@@ -226,9 +226,9 @@ function translate_dolphin_value() {
                     value="${ini_value}\`Hat ${input_id} ${dir}\`"
                 elif [[ "$ini_value" == *\)* ]]; then
                     value="\`Hat ${input_id} ${dir}\`, ${ini_value}"
-                elif [[ "$dir" == "Up" || "$dir" == "Left" ]]; then
+                elif [[ "$dir" == "N" || "$dir" == "W" ]]; then
                     value="\`Hat ${input_id} ${dir}\`"
-                elif [[ "$dir" == "Right" || "$dir" == "Down" ]]; then
+                elif [[ "$dir" == "E" || "$dir" == "S" ]]; then
                     value="\`${dir}\`"
                 fi
             else
@@ -243,9 +243,9 @@ function translate_dolphin_value() {
                     value="${ini_value}\`Button ${input_id}\`"
                 elif [[ "$ini_value" == *\)* ]]; then
                     value="\`Button ${input_id}\`, ${ini_value}"
-                elif [[ "$dir" == "Up" || "$dir" == "Left" ]]; then
+                elif [[ "$dir" == "N" || "$dir" == "W" ]]; then
                     value="\`Button ${input_id}\`"
-                elif [[ "$dir" == "Right" || "$dir" == "Down" ]]; then
+                elif [[ "$dir" == "E" || "$dir" == "S" ]]; then
                     value="\`${input_id}\`"
                 fi
             else
