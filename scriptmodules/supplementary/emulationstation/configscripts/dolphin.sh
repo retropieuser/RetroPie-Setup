@@ -114,6 +114,9 @@ function map_dolphin_joystick() {
             gc_keys=("Buttons/Start")
             wii_keys=("Buttons/+" "Classic/Buttons/+")
             ;;
+        select)
+            wii_keys=("Buttons/-" "Classic/Buttons/-")
+            ;;
         leftanalogleft)
             gc_keys=("Main Stick/Left")
             wii_keys=("Nunchuk/Left" "Classic/Left Stick/Left")
