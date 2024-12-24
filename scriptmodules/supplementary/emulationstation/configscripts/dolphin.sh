@@ -137,6 +137,9 @@ function map_dolphin_joystick() {
             wii_keys=("Nunchuk/Down" "Classic/Left Stick/Down")
             dir=("S")
             ;;
+        leftthumb)
+            wii_keys=("Hotkeys/Sideways Toggle")
+            ;;
         rightanalogleft)
             gc_keys=("C-Stick/Left")
             wii_keys=("IR/Left" "Classic/Right Stick/Left")
