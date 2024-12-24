@@ -79,35 +79,35 @@ function map_dolphin_joystick() {
             ;;
         b)
             gc_keys=("Buttons/B")
-            wii_keys=("Buttons/B" "Classic/Buttons/A")
+            wii_keys=("Buttons/A" "Classic/Buttons/A")
             is_b=true
             ;;
         y)
             gc_keys=("Buttons/Y")
-            wii_keys=("Buttons/2" "Classic/Buttons/X")
+            wii_keys=("Buttons/1" "Classic/Buttons/X")
             ;;
         a)
             gc_keys=("Buttons/A")
-            wii_keys=("Buttons/A" "Classic/Buttons/B")
+            wii_keys=("Buttons/B" "Classic/Buttons/B")
             is_a=true
             ;;
         x)
             gc_keys=("Buttons/X")
-            wii_keys=("Buttons/1" "Classic/Buttons/Y")
+            wii_keys=("Buttons/2" "Classic/Buttons/Y")
             ;;
         leftbottom|leftshoulder)
-            gc_keys=("Triggers/L")
             wii_keys=("Nunchuk/Buttons/C" "Classic/Buttons/ZL")
             ;;
         rightbottom|rightshoulder)
-            gc_keys=("Triggers/R")
+            gc_keys=("Buttons/Z")
             wii_keys=("Shake/X" "Shake/Y" "Shake/Z" "Classic/Buttons/ZR")
             ;;
         righttop|righttrigger)
-            gc_keys=("Buttons/Z")
+            gc_keys=("Triggers/R")
             wii_keys=("Nunchuk/Shake/X" "Nunchuk/Shake/Y" "Nunchuk/Shake/Z" "Classic/Buttons/R-Analog")
             ;;
         lefttop|lefttrigger)
+            gc_keys=("Triggers/L")
             wii_keys=("Nunchuk/Buttons/Z" "Classic/Buttons/L-Analog")
             ;;
         start)
