@@ -291,11 +291,20 @@ function onend_dolphin_joystick() {
     # Map generic Stick cali
     cat <<EOF >> ${_tmp_config_files[gc]}
 Main Stick/Calibration = 100.00 141.42 100.00 141.42 100.00 141.42 100.00 141.42
+Main Stick/Dead Zone = 15.
 C-Stick/Calibration = 100.00 141.42 100.00 141.42 100.00 141.42 100.00 141.42
+C-Stick/Dead Zone = 15.
+
 EOF
 
     cat <<EOF >> ${_tmp_config_files[wii]}
 ${_extension_string}
+IR/Relative Input = True
+Classic/Left Stick/Dead Zone = 15.
+Classic/Right Stick/Dead Zone = 15.
+Nunchuk/Stick/Dead Zone = 15.
+IR/Dead Zone = 15.
+
 EOF
 
     # disable any auto configs for the same device to avoid duplicates
