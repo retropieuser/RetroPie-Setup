@@ -79,21 +79,21 @@ function map_dolphin_joystick() {
             ;;
         b)
             gc_keys=("Buttons/B")
-            wii_keys=("Buttons/A" "Classic/Buttons/A")
+            wii_keys=("Buttons/A" "Classic/Buttons/B")
             is_b=true
             ;;
         y)
             gc_keys=("Buttons/Y")
-            wii_keys=("Buttons/1" "Classic/Buttons/X")
+            wii_keys=("Buttons/1" "Classic/Buttons/Y")
             ;;
         a)
             gc_keys=("Buttons/A")
-            wii_keys=("Buttons/B" "Classic/Buttons/B")
+            wii_keys=("Buttons/B" "Classic/Buttons/A")
             is_a=true
             ;;
         x)
             gc_keys=("Buttons/X")
-            wii_keys=("Buttons/2" "Classic/Buttons/Y")
+            wii_keys=("Buttons/2" "Classic/Buttons/X")
             ;;
         leftbottom|leftshoulder)
             wii_keys=("Nunchuk/Buttons/C" "Classic/Buttons/ZL")
