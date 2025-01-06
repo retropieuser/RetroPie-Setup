@@ -104,11 +104,11 @@ function map_dolphin_joystick() {
             ;;
         righttop|righttrigger)
             gc_keys=("Triggers/R")
-            wii_keys=("Nunchuk/Shake/X" "Nunchuk/Shake/Y" "Nunchuk/Shake/Z" "Classic/Buttons/R-Analog")
+            wii_keys=("Nunchuk/Shake/X" "Nunchuk/Shake/Y" "Nunchuk/Shake/Z" "Classic/Triggers/R-Analog")
             ;;
         lefttop|lefttrigger)
             gc_keys=("Triggers/L")
-            wii_keys=("Nunchuk/Buttons/Z" "Classic/Buttons/L-Analog")
+            wii_keys=("Nunchuk/Buttons/Z" "Classic/Triggers/L-Analog")
             ;;
         start)
             gc_keys=("Buttons/Start")
