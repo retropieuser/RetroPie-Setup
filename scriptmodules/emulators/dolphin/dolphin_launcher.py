@@ -32,7 +32,8 @@ dolphin_temp_keybinds = {
     "gc": pathlib.Path("/tmp/GCPadNew.ini"),
     "wii": pathlib.Path("/tmp/WiimoteNew.ini"),
 }
-
+dolphin_hotkeys = dolphin_config / "Hotkeys.ini"
+dolphin_settings = dolphin_config / "Dolphin.ini"
 dolphin_emu = pathlib.Path("/opt/retropie/emulators/dolphin/bin/dolphin-emu")
 dolphin_tool = pathlib.Path("/opt/retropie/emulators/dolphin/bin/dolphin-tool")
 
@@ -118,13 +119,28 @@ def create_new_config(gamepads, console):
     #    new_config.write(f)
     return new_config
 
+def create_new_hotkeys(gamepad, console):
+    new_config = configparser.ConfigParser()
+    home_button = 'Buttons/Home' if console == 'wii' else 'Hotkey'
+    a_key = gamepad['config']['Buttons/A'] # on the wii is flipped
+    b_key = gamepad['config']['Buttons/B'] # same
+    home_key = gamepad['config'][home_button]
+    new_config.add_section('Hotkeys')
+    new_config['Hotkeys']['Device'] = gamepad['name']
+    new_config['Hotkeys']['General/Stop'] = f'{home_key}&{a_key}&{b_key}'
+    return new_config
+
 def create_empty_config(console):
     new_config = configparser.ConfigParser()
     for i in range(1, 5):
         new_config[f'{section_names[console]}{i}'] = {"Source": "0"}
     return new_config
 
-def start_game(game, selected_console, config):
+def start_game(game,
+               selected_console,
+               gamepad_config,
+               hotkey_config):
+    old_stopconfirm = ""
     try:
         for console in dolphin_keybinds:
             if dolphin_keybinds[console].exists():
@@ -132,10 +148,22 @@ def start_game(game, selected_console, config):
             with open(dolphin_keybinds[console], "w") as f:
                 if console == selected_console:
                     print(f"Writing new keybinds at {dolphin_keybinds[selected_console]}")
-                    config.write(f)
+                    gamepad_config.write(f)
                 else:
                     print(f"Writing empty keybinds at {dolphin_keybinds[console]}")
                     create_empty_config(console).write(f)
+        if dolphin_hotkeys.exists():
+            shutil.move(dolphin_hotkeys, pathlib.Path("/tmp/Hotkeys.ini"))
+        dolphin_config = configparser.ConfigParser()
+        dolphin_config.read(dolphin_settings)
+        if "ConfirmStop" in dolphin_config["Interface"]:
+            old_stopconfirm = dolphin_config["Interface"]["ConfirmStop"]
+        dolphin_config["Interface"]["ConfirmStop"] = "False"
+        with open(dolphin_settings, "w") as f:
+            dolphin_config.write(f)
+        with open(dolphin_hotkeys, "w") as f:
+            print(f"Writing new hotkeys at {dolphin_hotkeys}")
+            hotkey_config.write(f)
         launch_cmd = f'{dolphin_emu} -b -e "{game}"'
         proc = subprocess.Popen(shlex.split(launch_cmd))
         proc.wait()
@@ -144,12 +172,26 @@ def start_game(game, selected_console, config):
         for console in dolphin_keybinds:
             if dolphin_temp_keybinds[console].exists():
                 shutil.move(dolphin_temp_keybinds[console], dolphin_keybinds[console])
+            else:
+                dolphin_keybinds[console].unlink()
+        print("Restoring original stop confirm")
+        dolphin_config = configparser.ConfigParser()
+        dolphin_config.read(dolphin_settings)
+        dolphin_config["Interface"]["ConfirmStop"] = old_stopconfirm
+        with open(dolphin_settings, "w") as f:
+            dolphin_config.write(f)
+        print("Restoring original hotkeys")
+        if pathlib.Path("/tmp/Hotkeys.ini").exists():
+            shutil.move(pathlib.Path("/tmp/Hotkeys.ini"), dolphin_hotkeys)
+        else:
+            dolphin_hotkeys.unlink()
 
 def main(rom, selected_console):
     sdl2.SDL_Init(sdl2.SDL_INIT_JOYSTICK | sdl2.SDL_INIT_GAMECONTROLLER)
     gamepads = find_game_controllers(selected_console)
     new_config = create_new_config(gamepads, selected_console)
-    start_game(rom, selected_console, new_config)
+    new_hotkey_config = create_new_hotkeys(gamepads[0], selected_console)
+    start_game(rom, selected_console, new_config, new_hotkey_config)
 
 if __name__ == "__main__":
     args = get_args()
